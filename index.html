@@ -1,1 +1,155 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>AgroGestor</title><link rel='stylesheet' href='style.css'></head><body><h1>AgroGestor</h1><script src='script.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Financeiro</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<div id="login-container">
+    <div class="login-box">
+        <h2>🔐 Login</h2>
+
+        <input type="password" id="senha" placeholder="Digite a senha">
+
+        <button onclick="fazerLogin()">Entrar</button>
+
+        <p>Senha padrão: 1234</p>
+    </div>
+</div>
+
+<div id="app" style="display:none;">
+
+    <header>
+        <h1>💰 Meu Financeiro</h1>
+
+        <button onclick="alternarTema()" class="tema-btn">
+            🌙 Tema
+        </button>
+    </header>
+
+    <section class="dashboard">
+
+        <div class="card receita">
+            <h3>Receitas</h3>
+            <span id="totalReceitas">R$ 0,00</span>
+        </div>
+
+        <div class="card despesa">
+            <h3>Despesas</h3>
+            <span id="totalDespesas">R$ 0,00</span>
+        </div>
+
+        <div class="card saldo">
+            <h3>Saldo</h3>
+            <span id="saldoTotal">R$ 0,00</span>
+        </div>
+
+    </section>
+
+    <section class="formulario">
+
+        <select id="tipo">
+            <option value="Receita">Receita</option>
+            <option value="Despesa">Despesa</option>
+        </select>
+
+        <input
+            type="text"
+            id="descricao"
+            placeholder="Descrição">
+
+        <input
+            type="number"
+            id="valor"
+            placeholder="Valor">
+
+        <select id="categoria">
+            <option>Mercado</option>
+            <option>Combustível</option>
+            <option>Lazer</option>
+            <option>Moradia</option>
+            <option>Saúde</option>
+            <option>Educação</option>
+            <option>Salário</option>
+            <option>Freelance</option>
+            <option>Outros</option>
+        </select>
+
+        <button onclick="adicionarLancamento()">
+            Adicionar
+        </button>
+
+    </section>
+
+    <section class="pesquisa">
+
+        <input
+            type="text"
+            id="pesquisa"
+            placeholder="Pesquisar lançamento..."
+            onkeyup="atualizarTabela()">
+
+    </section>
+
+    <section class="historico">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+
+            <tbody id="listaLancamentos"></tbody>
+        </table>
+
+    </section>
+
+    <section class="graficos">
+
+        <div class="grafico-box">
+            <h2>📊 Gastos por Categoria</h2>
+            <canvas id="graficoPizza"></canvas>
+        </div>
+
+        <div class="grafico-box">
+            <h2>📈 Evolução Mensal</h2>
+            <canvas id="graficoMensal"></canvas>
+        </div>
+
+    </section>
+
+    <section class="acoes">
+
+        <button onclick="exportarExcel()">
+            📊 Exportar Excel
+        </button>
+
+        <button onclick="window.print()">
+            🖨️ Imprimir Relatório
+        </button>
+
+        <button onclick="limparTudo()" class="perigo">
+            🗑 Limpar Tudo
+        </button>
+
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
